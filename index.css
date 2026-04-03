@@ -1,9 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .header {
     display: flex;
     justify-content: space-between;
     border: 1px solid black;
     border-radius: 20px;
     background-color: aliceblue;
+    margin-bottom: 10px;
 }
 
 .logo {
@@ -47,6 +52,15 @@
     background-color: antiquewhite;
 }
 
+.add-count-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
 .shimmer-card {
     margin: 2px;
     padding: 20px;
@@ -60,4 +74,20 @@
 .card:hover {
     border: 1px solid black;
     cursor: pointer;
+}
+
+.user-card {
+    padding: 50px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: beige;
+}
+
+.add-count-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: 10px;
 }

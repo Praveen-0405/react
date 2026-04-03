@@ -1,21 +1,33 @@
-import React from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import About from "./components/About";
+// import About from "./components/About";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Contacts from "./components/Contacts";
 import Error from "./components/Error";
 import RestoMenus from "./components/RestoMenus";
+import UserContext from "./utils/UserContext";
+import { useState } from "react";
 const Layout = () => {
+  const [userName, setUserName] = useState();
+
+  useEffect(() => {
+    setUserName("Praveen Kumar");
+  }, []);
+
   return (
-    <div className="app">
-      <Header />
-      <Outlet />
-      {/* <Body /> */}
-    </div>
+    <UserContext.Provider value={{ userData: userName, setUserName }}>
+      <div className="app">
+        <Header />
+        <Outlet />
+        {/* <Body /> */}
+      </div>
+    </UserContext.Provider>
   );
 };
+
+const About = lazy(() => import("./components/About"));
 
 const appRouter = createBrowserRouter([
   {
@@ -28,7 +40,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading.....</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contacts",
